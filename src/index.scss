@@ -1,0 +1,14 @@
+// sass-lint:disable no-ids
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-weight: 300;
+    overflow: hidden;
+    letter-spacing: 0.025rem;
+    font-family: "Helvetica Neue", Helvetica, arial;
+}
+// sass-lint:enable no-ids

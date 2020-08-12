@@ -1,0 +1,225 @@
+// typography
+html,
+body {
+  color: #666;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+p {
+  &.note {
+    color: #aaa;
+    font-size: 0.8rem;
+  }
+}
+
+.Container {
+  width: 1170px;
+  margin: 0 auto;
+
+  @media(max-width: 1170px) {
+    width: 768px;
+  }
+
+  @media(max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.Row {
+  display: flex;
+
+  &.Stack {
+    flex-direction: column;
+  }
+}
+
+.Column {
+  flex: 1;
+
+  &-1 {
+    flex: 1;
+  }
+
+  &-2 {
+    flex: 2;
+  }
+
+  &-3 {
+    flex: 3;
+  }
+
+  &-4 {
+    flex: 4;
+  }
+
+  &-5 {
+    flex: 5;
+  }
+
+  &-6 {
+    flex: 6;
+  }
+
+  &-7 {
+    flex: 7;
+  }
+
+  &-8 {
+    flex: 8;
+  }
+
+  &-9 {
+    flex: 9;
+  }
+
+  &-10 {
+    flex: 10;
+  }
+
+  &-11 {
+    flex: 11;
+  }
+
+  &-12 {
+    flex: 12;
+  }
+}
+
+.Btn {
+  font-size: 1rem;
+  cursor: pointer;
+  border-width: 3px;
+  text-align: center;
+  border-style: solid;
+  letter-spacing: 3px;
+  padding: 0.6rem 1rem;
+  border-radius: 100px;
+  text-decoration: none;
+  background: transparent;
+  text-transform: uppercase;
+  animation: all 0.5s ease-in;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    color: #fff;
+    //-webkit-box-shadow: inset 0px 2px 3px 0px rgba(255,255,255,0.15);
+    //-moz-box-shadow: inset 0px 2px 3px 0px rgba(255,255,255,0.15);
+    //box-shadow: inset 0px 2px 3px 0px rgba(255,255,255,0.15);
+  }
+
+  &__Default {
+    color: #666;
+    border-color: #666;
+
+    &:hover {
+      background: #eee;
+    }
+
+    &:active {
+      background: #666;
+    }
+  }
+
+  &__Primary {
+    color: #4d97ec;
+    border-color: #4d97ec;
+
+    &:hover {
+      background: rgba(77, 151, 236, 0.2);
+    }
+
+    &:active {
+      background: #4d97ec;
+    }
+  }
+}
+
+.Header {
+  display: flex;
+
+  &__Icon {
+    flex: 1;
+
+    &--Left {
+
+    }
+
+    &--Right {
+
+    }
+  }
+
+  &__Logo {
+    flex: 3;
+
+    a {
+      color: #666;
+      text-decoration: none;
+      animation: all 0.5s ease-in;
+
+      &:hover {
+        color: #333;
+      }
+    }
+
+    h2 {
+      text-align: center;
+    }
+  }
+}
+
+// Forms
+.FormGroup {
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+
+  & > * {
+    flex: 1;
+  }
+
+  label {
+    color: #666;
+    font-weight: 800;
+    font-size: 0.8rem;
+  }
+
+  input,
+  select,
+  textarea {
+    color: #666;
+    margin-top: 3px;
+    border-color: #eee;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.6rem 1rem;
+
+    &:hover {
+      border-color: #ccc;
+    }
+
+    &:focus {
+      color: #222;
+      outline: none;
+      border-color: #666;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  input,
+  textarea {
+
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+}
