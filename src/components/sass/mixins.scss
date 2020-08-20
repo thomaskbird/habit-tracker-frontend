@@ -1,5 +1,4 @@
-@import './general';
-
 @mixin containerPadding {
   padding: 15px;
+  box-sizing: border-box;
 }

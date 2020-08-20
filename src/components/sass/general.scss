@@ -8,6 +8,16 @@ h1, h2, h3, h4, h5 {
   font-weight: 600;
   letter-spacing: 5px;
   text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+
+  small {
+    color: #ccc;
+    font-size: 70%;
+    font-weight: 300;
+    margin-left: 0.4rem;
+  }
 }
 
 p {
@@ -39,8 +49,6 @@ p {
 }
 
 .Column {
-  flex: 1;
-
   &-1 {
     flex: 1;
   }
@@ -144,6 +152,8 @@ p {
 
 .Header {
   display: flex;
+  padding: 10px 0;
+  background: #f5f5f5;
 
   &__Icon {
     flex: 1;
@@ -171,7 +181,8 @@ p {
     }
 
     h2 {
-      text-align: center;
+      margin: 0;
+      justify-content: center;
     }
   }
 }

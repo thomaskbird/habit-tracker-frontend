@@ -1,0 +1,9 @@
+.DashboardView {
+  @include containerPadding;
+}
+
+.Tracker {
+  h3 {
+    word-break: break-all;
+  }
+}
