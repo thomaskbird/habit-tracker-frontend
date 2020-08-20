@@ -10,7 +10,6 @@ const DashboardView = () => {
 
   useEffect(() => {
     api.get('/trackers').then(response => {
-      console.log('response.data.payload.trackers', response.data.payload.trackers);
       setTrackers(response.data.payload.trackers);
     }).catch(e => console.log('Error: ', e));
   }, []);

@@ -46,6 +46,7 @@ const LoginView = ({}: LoginViewProps) => {
 
       <button
         type="button"
+        className={'Btn Btn__Primary'}
         onClick={() => handleSubmit()}
       >
         Login

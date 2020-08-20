@@ -67,7 +67,7 @@ const TrackerCreateView = () => {
           </div>
         </div>
       </div>
-      <div className={'Row Stack'}>
+      <div className={'Row Stack Pin Pin__Bottom'}>
         <button
           type="button"
           className={'Btn Btn__Primary Column'}

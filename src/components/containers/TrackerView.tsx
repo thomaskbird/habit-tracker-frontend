@@ -26,6 +26,12 @@ const TrackerView = ({
     }).catch(e => console.log('Error: ', e));
   };
 
+  const deleteTrackerItem = (trackerItemId: number) => {
+    api.get(`/tracker-item/remove/${trackerItemId}`).then(response => {
+      getTracker();
+    }).catch(e => console.log('Error: ', e));
+  };
+
   useEffect(() => {
     getTracker();
   }, []);
@@ -40,10 +46,13 @@ const TrackerView = ({
       {tracker.tracker_items.map(item => (
         <div className={'instance'} key={item.id}>
           {item.created_at}
+          <button
+            onClick={() => deleteTrackerItem(item.id)}
+          >Delete</button>
         </div>
       ))}
 
-      <div className={'Row Stack'}>
+      <div className={'Row Stack Pin Pin__Bottom'}>
         <button
           type="button"
           className={'Btn Btn__Primary Column'}

@@ -1,5 +1,6 @@
 .DashboardView {
-  @include containerPadding;
+  @include headerSpacing;
+  @include verticalScrollable;
 }
 
 .Tracker {

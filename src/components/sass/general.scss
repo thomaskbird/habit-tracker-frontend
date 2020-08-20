@@ -27,7 +27,12 @@ p {
   }
 }
 
+div {
+  box-sizing: border-box;
+}
+
 .Container {
+  height: 100%;
   width: 1170px;
   margin: 0 auto;
 
@@ -151,8 +156,11 @@ p {
 }
 
 .Header {
+  top: 0;
+  width: 100%;
   display: flex;
   padding: 10px 0;
+  position: fixed;
   background: #f5f5f5;
 
   &__Icon {
@@ -232,5 +240,16 @@ p {
 
   textarea {
     min-height: 100px;
+  }
+}
+
+.Pin {
+  width: 100%;
+  position: absolute;
+  @include containerPadding;
+
+  &__Bottom {
+    left: 0;
+    bottom: 0;
   }
 }
