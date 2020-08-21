@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
+import {api} from 'src';
 import './LoginView.scss';
+import {AppError} from 'src/types/global';
 
 interface LoginViewProps {
 
@@ -10,10 +12,60 @@ const LoginView = ({}: LoginViewProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errors, setErrors] = useState<AppError>({});
 
   const handleSubmit = () => {
     console.log('handleSubmit', email, password);
-    setIsLoggedIn(true);
+
+    if (email && password) {
+      api
+      .post("login", {
+        email: email,
+        password: password
+      })
+      .then((response) => {
+        console.log("response", response);
+
+        if (response.status) {
+          localStorage.setItem(
+            "token",
+            response.data.data.user.api_token
+          );
+
+          localStorage.setItem(
+            "user",
+            JSON.stringify(response.data.data.user)
+          );
+
+          api.defaults.headers.common[
+            "Authorization"
+            ] = `Bearer ${localStorage.getItem("token")}`;
+
+          setIsLoggedIn(true);
+        } else {
+          setErrors({
+            error: true,
+            type: 'api',
+            msgs: response.data.errors
+          });
+        }
+      })
+      .catch((error) => {console.log("error", error);
+        setErrors({
+          error: true,
+          type: 'api',
+          msgs: [error.message]
+        });
+      });
+    } else {
+      setErrors({
+        error: true,
+        type: 'validation',
+        msgs: [
+          "You missed one of the required values please try again!"
+        ]
+      });
+    }
   };
 
   if(isLoggedIn) {

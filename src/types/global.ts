@@ -23,3 +23,9 @@ export interface Tracker extends Timestamps {
   type: TrackerType;
   tracker_items: TrackerItem[];
 }
+
+export interface AppError {
+  error: boolean;
+  type: string;
+  msgs: string[];
+}

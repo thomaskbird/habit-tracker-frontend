@@ -9,6 +9,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import axios from "axios";
 
+import { Root } from "src/components/Root";
+
 const location = window.location;
 const protocol = location.protocol;
 const host = location.hostname;
@@ -16,10 +18,14 @@ const host = location.hostname;
 const env = host === "localhost" ? `dev` : `api`;
 
 export const api = axios.create({
-    baseURL: `http://dev-tracker.thomaskbird.com/api`
+    baseURL: `http://${env}-tracker.thomaskbird.com/api`
 });
 
-import { Root } from "src/components/Root";
+if (localStorage.getItem("token")) {
+  api.defaults.headers.common[
+    "Authorization"
+    ] = `Bearer ${localStorage.getItem("token")}`;
+}
 
 /**
  * Web App root path.
