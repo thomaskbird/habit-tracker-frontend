@@ -29,6 +29,11 @@ const TrackerCreateView = () => {
     <div className={'TrackerCreateView'}>
       <div className={'Row'}>
         <div className={'Column'}>
+          <h2>Create a tracker</h2>
+        </div>
+      </div>
+      <div className={'Row'}>
+        <div className={'Column'}>
           <div className={'FormGroup'}>
             <label htmlFor={'name'}>Name:</label>
             <input

@@ -1,3 +1,4 @@
 .TrackerView {
-  @include containerPadding;
+  @include headerSpacing;
+  @include verticalScrollable;
 }

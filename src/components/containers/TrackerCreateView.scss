@@ -1,5 +1,6 @@
 .TrackerCreateView {
-  @include containerPadding;
+  @include headerSpacing;
+  @include verticalScrollable;
 
   button {
     margin-bottom: 20px;
