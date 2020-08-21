@@ -12,7 +12,7 @@ const LoginView = ({}: LoginViewProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errors, setErrors] = useState<AppError>({});
+  const [errors, setErrors] = useState<AppError | null>(null);
 
   const handleSubmit = () => {
     console.log('handleSubmit', email, password);
