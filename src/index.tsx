@@ -17,8 +17,9 @@ const host = location.hostname;
 
 const env = host === "localhost" ? `dev` : `api`;
 
+// todo: add dynamic env var when there is a production and development
 export const api = axios.create({
-    baseURL: `http://${env}-tracker.thomaskbird.com/api`
+    baseURL: `http://dev-tracker.thomaskbird.com/api`
 });
 
 if (localStorage.getItem("token")) {
