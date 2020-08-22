@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from "react-router";
+import {Link} from 'react-router-dom';
 import moment from 'moment';
 import {
   ResponsiveContainer,
@@ -28,6 +30,7 @@ const TrackerView = ({
 }: TrackerViewProps) => {
   const [tracker, setTracker] = useState<Tracker | undefined>(undefined);
   const [chartData, setChartData] = useState<any>(null);
+  const [redirect, setRedirect] = useState<boolean>(false);
 
   const addTrackerItem = () => {
     api.post(`/tracker-item/create/${match.params.id}`).then(response => {
@@ -61,6 +64,12 @@ const TrackerView = ({
     }).catch(e => console.log('Error: ', e));
   };
 
+  const deleteTracker = () => {
+    api.get(`/trackers/remove/${match.params.id}`).then(response => {
+      setRedirect(true);
+    }).catch(e => console.log('Error: ', e));
+  }
+
   const deleteTrackerItem = (trackerItemId: number) => {
     api.get(`/tracker-item/remove/${trackerItemId}`).then(response => {
       getTracker();
@@ -71,11 +80,26 @@ const TrackerView = ({
     getTracker();
   }, []);
 
-  return tracker ? (
+  return tracker ? redirect ? (
+    <Redirect to={'/dashboard'} />
+  ) : (
     <div
       className={'TrackerView Container'}
     >
-      <h2>{tracker.name} <small>{tracker.type}</small></h2>
+      <div className={'Subheader'}>
+        <Link to={'/dashboard'}>Back</Link>
+      </div>
+
+      <h2>
+        {tracker.name}
+        <small>{tracker.type}</small>
+        <button
+          type="button"
+          onClick={() => deleteTracker()}
+        >
+          Delete
+        </button>
+      </h2>
       <p>{tracker.description}</p>
 
       <TrackerTypeSimpleView

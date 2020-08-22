@@ -1,0 +1,22 @@
+.Tracker {
+  margin: 1rem 0;
+  cursor: pointer;
+
+  h3 {
+    margin: 0;
+  }
+
+  a {
+    color: #666;
+    text-decoration: none;
+    animation: all .5s ease-in;
+
+    &:hover {
+      color: #222;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}

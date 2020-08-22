@@ -2,6 +2,8 @@ import React from 'react';
 import {Tracker} from 'src/types/global';
 import {Link} from 'react-router-dom';
 
+import './TrackerListItemView.scss';
+
 interface TrackerListItemViewProps {
   tracker: Tracker;
 }
