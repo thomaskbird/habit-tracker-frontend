@@ -1,0 +1,53 @@
+.Header {
+  top: 0;
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  position: fixed;
+  background: #f5f5f5;
+
+  &__Icon {
+    flex: 1;
+
+    a {
+      color: #999;
+      transition: all .3s ease-in;
+
+      &:hover {
+        color: #333;
+      }
+    }
+
+    &--Left {
+
+    }
+
+    &--Right {
+      display: flex;
+      justify-content: flex-end;
+
+      a {
+        padding: .3rem 1rem;
+      }
+    }
+  }
+
+  &__Logo {
+    flex: 3;
+
+    a {
+      color: #666;
+      text-decoration: none;
+      transition: all 0.3s ease-in;
+
+      &:hover {
+        color: #333;
+      }
+    }
+
+    h2 {
+      margin: 0;
+      justify-content: center;
+    }
+  }
+}

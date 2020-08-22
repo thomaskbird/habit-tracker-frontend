@@ -1,5 +1,8 @@
 import React from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
+
+import './Header.scss';
 
 interface HeaderProps {}
 
@@ -15,7 +18,17 @@ const Header = ({}: HeaderProps) => {
         </Link>
       </div>
       <div className={'Header__Icon Header__Icon--Right'}>
-        <Link to={'/tracker/create'}>+</Link>
+        <Link to={'/tracker/create'}>
+          <FontAwesomeIcon icon={"plus"} />
+        </Link>
+        <Link
+          to={'/'}
+          onClick={() => {
+            localStorage.removeItem('token');
+          }}
+        >
+          <FontAwesomeIcon icon={"sign-out-alt"} />
+        </Link>
       </div>
     </div>
   )
