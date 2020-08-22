@@ -17,6 +17,7 @@ import {RouteComponentProps} from 'react-router';
 import {api} from 'src';
 
 import './TrackerView.scss';
+import {TrackerTypeSimpleView} from '../partials/TrackerTypeSimpleView';
 
 interface TrackerViewProps extends RouteComponentProps {
   match: any;
@@ -53,6 +54,7 @@ const TrackerView = ({
 
   const getTracker = () => {
     api.get(`/trackers/${match.params.id}`).then(response => {
+      console.log('response', response);
       setTracker(response.data.payload.tracker);
 
       buildChartData(response.data.payload.tracker_items);
@@ -76,35 +78,11 @@ const TrackerView = ({
       <h2>{tracker.name} <small>{tracker.type}</small></h2>
       <p>{tracker.description}</p>
 
-      {chartData ? (
-        <div className={'TrackerView__chart'}>
-          <ResponsiveContainer>
-            <BarChart
-              data={chartData}
-              margin={{
-                top: 5, right: 30, left: 20, bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="id" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="count" fill="#82ca9d" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      ) : undefined}
-
-      {tracker.tracker_items.map(item => (
-        <div className={'TrackerView__item'} key={item.id}>
-          {moment(item.created_at).format('YYYY-MM-DD HH:mm:ss')}
-          &nbsp;
-          <button
-            onClick={() => deleteTrackerItem(item.id)}
-          >Delete</button>
-        </div>
-      ))}
+      <TrackerTypeSimpleView
+        chartData={chartData}
+        trackerItems={tracker.tracker_items}
+        onDeleteTrackerItem={id => deleteTrackerItem(id)}
+      />
 
       <div className={'Row Stack Pin Pin__Bottom'}>
         <button

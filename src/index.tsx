@@ -5,6 +5,7 @@
 import "./index.scss";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Redirect } from 'react-router';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import axios from "axios";
@@ -28,6 +29,17 @@ if (localStorage.getItem("token")) {
     ] = `Bearer ${localStorage.getItem("token")}`;
 }
 
+api.interceptors.response.use((response) => {
+  return response;
+}, (error) => {
+  if (401 === error.response.status) {
+    // @ts-ignore
+    window.location = '/';
+  } else {
+    return Promise.reject(error);
+  }
+});
+
 /**
  * Web App root path.
  * If available, the web app exists in a sub directory on the server.
@@ -42,11 +54,11 @@ const webAppRootPath =
  * @returns Root component
  */
 function createAppElement(): JSX.Element {
-    return (
-        <BrowserRouter basename={webAppRootPath}>
-            <Root />
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter basename={webAppRootPath}>
+      <Root />
+    </BrowserRouter>
+  );
 }
 
 ReactDOM.render(createAppElement(), document.getElementById("root"));
