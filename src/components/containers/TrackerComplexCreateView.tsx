@@ -72,7 +72,7 @@ const TrackerComplexCreateView = () => {
                     </div>
 
                     <button
-                        type="button"
+                        type='button'
                         onClick={() => {
                             setCustomFields([...customFields, {
                                 id: customFieldCount,
@@ -100,12 +100,12 @@ const TrackerComplexCreateView = () => {
                                 });
                             }}
                         />
-                    )}
+                    ))}
                 </div>
             </div>
             <div className={'Row Stack Pin Pin__Bottom Footer'}>
                 <button
-                    type="button"
+                    type='button'
                     className={'Btn Btn__Primary Column'}
                     onClick={() => handleCreateTracker()}
                 >
