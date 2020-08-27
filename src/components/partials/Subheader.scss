@@ -1,0 +1,14 @@
+.Subheader {
+  display: flex;
+  padding: 1rem 0;
+  justify-content: space-between;
+
+  a {
+    color: #999;
+    transition: all .3s ease-in;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Tracker} from 'src/types/global';
 import {Link} from 'react-router-dom';
 
@@ -13,11 +14,14 @@ const TrackerListItemView = ({
 }: TrackerListItemViewProps) => {
   return (
     <div className={'Row Tracker'}>
-      <div className={'Column'}>
+      <div className={'Column Column-1'}>
         <Link to={`/tracker/${tracker.id}`}>
           <h3>{tracker.name}</h3>
         </Link>
-        <p className="note">{tracker.description}</p>
+        <p className={'note'}>{tracker.description}</p>
+      </div>
+      <div className={'Column Tracker__icon'}>
+        <FontAwesomeIcon icon={'chevron-right'} />
       </div>
     </div>
   );

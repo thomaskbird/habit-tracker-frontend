@@ -2,31 +2,31 @@
  * Entry point for the PDS Web App
  * @module
  */
-import "./index.scss";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import './index.scss';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import axios from "axios";
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import axios from 'axios';
 
-import { Root } from "src/components/Root";
+import { Root } from 'src/components/Root';
 
 const location = window.location;
 const protocol = location.protocol;
 const host = location.hostname;
 
-const env = host === "localhost" ? `dev` : `api`;
+const env = host === 'localhost' ? `dev` : `api`;
 
 // todo: add dynamic env var when there is a production and development
 export const api = axios.create({
-    baseURL: `http://dev-tracker.thomaskbird.com/api`
+    baseURL: `https://dev-tracker.thomaskbird.com/api`
 });
 
-if (localStorage.getItem("token")) {
+if (localStorage.getItem('token')) {
   api.defaults.headers.common[
-    "Authorization"
-    ] = `Bearer ${localStorage.getItem("token")}`;
+    'Authorization'
+    ] = `Bearer ${localStorage.getItem('token')}`;
 }
 
 api.interceptors.response.use((response) => {
@@ -47,7 +47,7 @@ api.interceptors.response.use((response) => {
 const webAppRootPath =
     process.env.WEB_APP_ROOT_PATH != null
         ? `/${process.env.WEB_APP_ROOT_PATH}`
-        : "";
+        : '';
 
 /**
  * Creates the Root component
@@ -61,4 +61,4 @@ function createAppElement(): JSX.Element {
   );
 }
 
-ReactDOM.render(createAppElement(), document.getElementById("root"));
+ReactDOM.render(createAppElement(), document.getElementById('root'));

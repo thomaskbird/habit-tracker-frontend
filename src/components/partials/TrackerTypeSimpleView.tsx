@@ -11,11 +11,14 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import {TrackerItem} from 'src/types/global';
+import {TrackerSimpleItem} from 'src/types/global';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { triggerPrompt } from '../../utils/utils';
 
 interface TrackerTypeSimpleViewProps {
   chartData: any[];
-  trackerItems: TrackerItem[];
+  trackerItems: TrackerSimpleItem[];
   onDeleteTrackerItem(id: number): void;
 }
 
@@ -40,7 +43,7 @@ const TrackerTypeSimpleView = ({
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="count" fill="#75a6bd" />
+              <Bar dataKey="count" fill="#999" />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -51,8 +54,17 @@ const TrackerTypeSimpleView = ({
           {moment(item.created_at).format('YYYY-MM-DD HH:mm:ss')}
           &nbsp;
           <button
-            onClick={() => onDeleteTrackerItem(item.id)}
-          >Delete</button>
+            className={'Btn Btn__small Btn__Danger Btn__icon Btn__icon--left'}
+            onClick={() => {
+              const confirm = triggerPrompt('Are you sure you want to delete?');
+              if(confirm) {
+                onDeleteTrackerItem(item.id)
+              }
+            }}
+          >
+            <FontAwesomeIcon icon={'times'} />
+            &nbsp;Delete
+          </button>
         </div>
       ))}
     </>

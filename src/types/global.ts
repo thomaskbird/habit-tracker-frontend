@@ -9,10 +9,14 @@ export enum TrackerType {
   simpleComplex = 'simple-complex',
 }
 
-export interface TrackerItem extends Timestamps {
+export interface TrackerSimpleItem extends Timestamps {
   id: number;
   tracker_id: number;
   amount: number;
+}
+
+export interface TrackerComplexItem extends TrackerSimpleItem, Timestamps {
+  hours: number;
 }
 
 export interface Tracker extends Timestamps {
@@ -21,7 +25,7 @@ export interface Tracker extends Timestamps {
   name: string;
   description?: string;
   type: TrackerType;
-  tracker_items: TrackerItem[];
+  tracker_items: TrackerSimpleItem[] | TrackerComplexItem[];
 }
 
 export interface AppError {

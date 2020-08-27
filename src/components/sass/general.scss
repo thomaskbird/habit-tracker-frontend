@@ -20,6 +20,26 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
 p {
   &.note {
     color: #aaa;
@@ -101,33 +121,35 @@ div {
   &-12 {
     flex: 12;
   }
+
+  &-13 {
+    flex: 13;
+  }
+
+  &-14 {
+    flex: 14;
+  }
+
+  &-15 {
+    flex: 15;
+  }
+
+  &-16 {
+    flex: 16;
+  }
+
+  &-17 {
+    flex: 17;
+  }
+
+  &-18 {
+    flex: 18;
+  }
 }
 
-.Btn {
-  font-size: 1rem;
-  cursor: pointer;
-  border-width: 3px;
-  text-align: center;
-  border-style: solid;
-  letter-spacing: 3px;
-  padding: 0.6rem 1rem;
-  border-radius: 100px;
-  text-decoration: none;
-  background: transparent;
-  text-transform: uppercase;
-  transition: all 0.3s ease-in;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    color: #fff;
-    //-webkit-box-shadow: inset 0px 2px 3px 0px rgba(255,255,255,0.15);
-    //-moz-box-shadow: inset 0px 2px 3px 0px rgba(255,255,255,0.15);
-    //box-shadow: inset 0px 2px 3px 0px rgba(255,255,255,0.15);
-  }
-
+.Btn,
+.Btn__medium,
+.Btn__small {
   &__Default {
     color: #666;
     border-color: #666;
@@ -152,6 +174,66 @@ div {
     &:active {
       background: #4d97ec;
     }
+  }
+
+  &__Danger {
+    color: #CB4248;
+    border-color: #CB4248;
+
+    &:hover {
+      background: lighten(#CB4248, 45%);
+    }
+
+    &:active {
+      background: #CB4248;
+    }
+  }
+}
+
+.Btn {
+  font-size: 1rem;
+  cursor: pointer;
+  border-width: 3px;
+  text-align: center;
+  border-style: solid;
+  letter-spacing: 3px;
+  padding: 0.6rem 1rem;
+  border-radius: 100px;
+  text-decoration: none;
+  background: transparent;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in;
+
+  &__small {
+    font-size: .6rem;
+    border-width: 1px;
+    letter-spacing: 0px;
+    padding: .2rem 1rem;
+    text-transform: capitalize;
+  }
+
+  &__medium {
+    font-size: .8rem;
+    border-width: 2px;
+    padding: .3rem .8rem;
+  }
+
+  &__icon {
+    &--left {
+      padding: .2rem .6rem .2rem .5rem;
+    }
+
+    &--right {
+      padding: .2rem .5rem .2rem .6rem;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    color: #fff;
   }
 }
 

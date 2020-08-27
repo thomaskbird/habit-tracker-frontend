@@ -1,0 +1,10 @@
+.TrackerComplexCreateView {
+  @include headerSpacing;
+  @include verticalScrollable;
+
+  .Footer {
+    button {
+      margin-bottom: 20px;
+    }
+  }
+}

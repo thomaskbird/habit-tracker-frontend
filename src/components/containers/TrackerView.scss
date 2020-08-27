@@ -2,6 +2,10 @@
   @include headerSpacing;
   @include verticalScrollable;
 
+  h2 {
+    margin: 0;
+  }
+
   &__chart {
     width: 100%;
     height: 300px;
