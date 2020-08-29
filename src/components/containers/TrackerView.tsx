@@ -17,12 +17,32 @@ interface TrackerViewProps extends RouteComponentProps {
   match: any;
 }
 
+const rangeList = [
+  {
+    val: 7,
+    text: 'Week',
+  },
+  {
+    val: 30,
+    text: 'Month',
+  },
+  {
+    val: 180,
+    text: 'Half Year',
+  },
+  {
+    val: 365,
+    text: 'Year',
+  },
+];
+
 const TrackerView = ({
   match,
 }: TrackerViewProps) => {
   const [tracker, setTracker] = useState<Tracker | undefined>(undefined);
   const [chartData, setChartData] = useState<any>(undefined);
   const [redirect, setRedirect] = useState<boolean>(false);
+  const [rangeSelected, setRangeSelected] = useState<number>(7);
 
   const addTrackerItem = () => {
     api.post(`/tracker-item/create/${match.params.id}`).then(response => {
@@ -31,26 +51,31 @@ const TrackerView = ({
   };
 
   const buildChartData = (trackerItems: any) => {
-    const period = 7;
     const range = [];
 
-    for(let i = 0; i < 7; i++) {
-      const day = moment().subtract(i, 'd').format('D');
-      const count = trackerItems[day] !== undefined ? trackerItems[day].length : 0;
+    for(let i = 0; i < rangeSelected; i++) {
+      const inst = moment().subtract(i, 'd');
+      const day = inst.format('DD');
+      const month = inst.format('MM');
+      const year = inst.format('YYYY');
+      const count = trackerItems[`${year}-${month}-${day}`] !== undefined ? trackerItems[`${year}-${month}-${day}`].length : 0;
 
       range.push({
-        id: day,
+        id: `${year}-${month}-${day}`,
+        label: `${month}/${day}`,
         count: count,
       });
     }
 
     setChartData(range.reverse());
-  }
+  };
 
   const getTracker = () => {
-    api.get(`/trackers/${match.params.id}`).then(response => {
-      setTracker(response.data.payload.tracker);
-      buildChartData(response.data.payload.tracker_items);
+    api.get(`/trackers/${match.params.id}/${rangeSelected}`).then(response => {
+      setTracker(old => old !== response.data.payload.tracker ? response.data.payload.tracker : old);
+      if (tracker !== response.data.payload.tracker) {
+        buildChartData(response.data.payload.tracker_items);
+      }
     }).catch(e => console.log('Error: ', e));
   };
 
@@ -58,7 +83,7 @@ const TrackerView = ({
     api.get(`/trackers/remove/${match.params.id}`).then(response => {
       setRedirect(true);
     }).catch(e => console.log('Error: ', e));
-  }
+  };
 
   const deleteTrackerItem = (trackerItemId: number) => {
     api.get(`/tracker-item/remove/${trackerItemId}`).then(response => {
@@ -68,7 +93,7 @@ const TrackerView = ({
 
   useEffect(() => {
     getTracker();
-  }, []);
+  }, [rangeSelected]);
 
   return tracker ? redirect ? (
     <Redirect to={'/dashboard'} />
@@ -79,7 +104,7 @@ const TrackerView = ({
           <FontAwesomeIcon icon={'chevron-left'} />
         </Link>
         <button
-          type="button"
+          type={'button'}
           className={'Btn Btn__medium Btn__Danger'}
           onClick={() => {
             const confirm = triggerPrompt(`Are you sure you want to delete ${tracker.name}?`);
@@ -90,7 +115,22 @@ const TrackerView = ({
         >
           Tracker <FontAwesomeIcon icon={'times'} />
         </button>
+        <select
+          name={'range'}
+          onChange={(e) => setRangeSelected(e.target.value as any as number)}
+        >
+          {rangeList.map(rangeItem => (
+            <option
+              key={rangeItem.val}
+              value={rangeItem.val}
+            >
+              {rangeItem.text}
+            </option>
+          ))}
+        </select>
       </Subheader>
+
+      {rangeSelected}
 
       <h2>
         {tracker.name}
@@ -106,7 +146,7 @@ const TrackerView = ({
 
       <div className={'Row Stack Pin Pin__Bottom'}>
         <button
-          type="button"
+          type={'button'}
           className={'Btn Btn__Primary Column'}
           onClick={() => addTrackerItem()}
         >
