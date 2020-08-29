@@ -130,8 +130,6 @@ const TrackerView = ({
         </select>
       </Subheader>
 
-      {rangeSelected}
-
       <h2>
         {tracker.name}
         <small>{tracker.type}</small>
