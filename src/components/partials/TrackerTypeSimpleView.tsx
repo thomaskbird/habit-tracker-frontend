@@ -22,6 +22,23 @@ interface TrackerTypeSimpleViewProps {
   onDeleteTrackerItem(id: number): void;
 }
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  console.log('active, payload, label', active, payload, label);
+  if(active) {
+    return (
+      <div className={'custom-tooltip'}>
+        <p className={'label'}>
+          <b>{payload[0].payload.id}</b>
+          <br />
+          Count: {payload[0].payload.count}
+        </p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 const TrackerTypeSimpleView = ({
   chartData,
   trackerItems,
@@ -41,7 +58,7 @@ const TrackerTypeSimpleView = ({
               <CartesianGrid strokeDasharray={'3 3'} />
               <XAxis dataKey={'label'} />
               <YAxis />
-              <Tooltip />
+              <Tooltip content={<CustomTooltip />}/>
               <Legend />
               <Bar dataKey={'count'} fill={'#999'} />
             </BarChart>
