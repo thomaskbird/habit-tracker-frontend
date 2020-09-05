@@ -3,7 +3,6 @@ import { Header } from './Header';
 
 import { Route, Switch } from 'react-router';
 
-import { DashboardView } from '../containers/DashboardView';
 import { NewDashboardView } from '../containers/NewDashboardView';
 import { TrackerCreateView } from '../containers/TrackerCreateView';
 import { TrackerComplexCreateView } from '../containers/TrackerComplexCreateView';
@@ -20,12 +19,8 @@ const AuthenticatedWrapper = ({ children }: AuthenticatedWrapperProps) => {
 
       <Switch>
         <Route
-          path={'/dashboard/new'}
-          component={NewDashboardView}
-        />
-        <Route
           path={'/dashboard'}
-          component={DashboardView}
+          component={NewDashboardView}
         />
         <Route
           path={'/tracker/create'}
