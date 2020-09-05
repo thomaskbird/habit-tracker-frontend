@@ -57,6 +57,11 @@ div {
   }
 }
 
+.AuthenticatedWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .Row {
   display: flex;
 

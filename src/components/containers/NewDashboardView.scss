@@ -1,0 +1,32 @@
+.NewDashboardView {
+  @include headerSpacing;
+  overflow: hidden;
+
+  & >.Row {
+    height: 100%;
+    overflow: inherit;
+
+    & > .Column {
+      overflow: inherit;
+
+      & > div {
+        height: 100%;
+
+        .react-swipeable-view-container {
+          height: 100%;
+        }
+      }
+
+      .SliderItem {
+        overflow: hidden;
+        max-height: 100%;
+      }
+    }
+  }
+}
+
+.Tracker {
+  h3 {
+    word-break: break-all;
+  }
+}

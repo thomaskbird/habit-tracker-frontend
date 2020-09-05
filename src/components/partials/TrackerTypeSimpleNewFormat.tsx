@@ -20,10 +20,11 @@ interface TrackerTypeSimpleNewFormatProps {
     trackerName?: string;
     chartData: any[];
     trackerItems: TrackerSimpleItem[];
+    onAddTrackerItem(): void;
     onDeleteTrackerItem(id: number): void;
 }
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload }: any) => {
     // console.log('active, payload, label', active, payload, label);
     if(active && payload != null) {
         return (
@@ -41,11 +42,12 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const TrackerTypeSimpleNewFormat = ({
-   trackerName,
-   chartData,
-   trackerItems,
-   onDeleteTrackerItem,
-}: TrackerTypeSimpleNewFormatProps) => {console.log('chartData', chartData);
+    trackerName,
+    chartData,
+    trackerItems,
+    onAddTrackerItem,
+    onDeleteTrackerItem,
+}: TrackerTypeSimpleNewFormatProps) => {
     return (
         <div className={'SliderItem'}>
             <div className={'SliderItem__title'}>
@@ -97,7 +99,7 @@ const TrackerTypeSimpleNewFormat = ({
                 <button
                     type={'button'}
                     className={'Btn Btn__Primary Column'}
-
+                    onClick={() => onAddTrackerItem()}
                 >
                     Add
                 </button>
