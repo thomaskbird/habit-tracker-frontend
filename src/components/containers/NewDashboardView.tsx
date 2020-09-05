@@ -20,6 +20,12 @@ const NewDashboardView = () => {
         }).catch(e => console.log('Error: ', e));
     };
 
+    const deleteTracker = (id: number) => {
+        api.get(`/trackers/remove/${id}`).then(response => {
+            getTrackers();
+        }).catch(e => console.log('Error: ', e));
+    };
+
     const deleteTrackerItem = (trackerItemId: number) => {
         api.get(`/tracker-item/remove/${trackerItemId}`).then(response => {
             getTrackers();
@@ -40,10 +46,11 @@ const NewDashboardView = () => {
                     {trackers.map(tracker => (
                         <TrackerTypeSimpleNewFormat
                           key={tracker.id}
-                          trackerName={tracker.name}
+                          tracker={tracker}
                           chartData={tracker.chart_data.reverse()}
                           trackerItems={tracker.tracker_items}
                           onAddTrackerItem={() => addTrackerItem(tracker.id)}
+                          onDeleteTracker={() => deleteTracker(tracker.id)}
                           onDeleteTrackerItem={id => deleteTrackerItem(id)}
                         />
                     ))}

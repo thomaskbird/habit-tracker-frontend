@@ -11,16 +11,17 @@ import {
     Legend,
 } from 'recharts';
 import './TrackerTypeSimpleNewFormat.scss';
-import {TrackerSimpleItem} from 'src/types/global';
+import { Tracker, TrackerSimpleItem } from 'src/types/global';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { triggerPrompt } from '../../utils/utils';
 
 interface TrackerTypeSimpleNewFormatProps {
-    trackerName?: string;
+    tracker: Tracker;
     chartData: any[];
     trackerItems: TrackerSimpleItem[];
     onAddTrackerItem(): void;
+    onDeleteTracker(): void;
     onDeleteTrackerItem(id: number): void;
 }
 
@@ -42,16 +43,34 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 const TrackerTypeSimpleNewFormat = ({
-    trackerName,
+    tracker,
     chartData,
     trackerItems,
     onAddTrackerItem,
+    onDeleteTracker,
     onDeleteTrackerItem,
 }: TrackerTypeSimpleNewFormatProps) => {
     return (
         <div className={'SliderItem'}>
             <div className={'SliderItem__title'}>
-                <h3>{trackerName}</h3>
+                <h3>
+                    {tracker.name}
+                    <button
+                        type={'button'}
+                        className={'Btn Btn__Danger Btn__small'}
+                        style={{
+                            float: 'right',
+                        }}
+                        onClick={() => {
+                            const confirm = triggerPrompt(`Are you sure you want to delete ${tracker.name}?`);
+                            if(confirm) {
+                                onDeleteTracker()
+                            }
+                        }}
+                    >
+                        <FontAwesomeIcon icon={'times'} />
+                    </button>
+                </h3>
             </div>
             {chartData ? (
                 <div className={'SliderItem__chart'}>
