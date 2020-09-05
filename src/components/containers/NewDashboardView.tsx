@@ -41,7 +41,7 @@ const NewDashboardView = () => {
                         <TrackerTypeSimpleNewFormat
                           key={tracker.id}
                           trackerName={tracker.name}
-                          chartData={tracker.chart_data}
+                          chartData={tracker.chart_data.reverse()}
                           trackerItems={tracker.tracker_items}
                           onAddTrackerItem={() => addTrackerItem(tracker.id)}
                           onDeleteTrackerItem={id => deleteTrackerItem(id)}
