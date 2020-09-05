@@ -19,6 +19,12 @@ export interface TrackerComplexItem extends TrackerSimpleItem, Timestamps {
   hours: number;
 }
 
+export interface ChartData {
+  id: string;
+  label: string;
+  count: number;
+}
+
 export interface Tracker extends Timestamps {
   id: number;
   user_id: number;
@@ -26,6 +32,7 @@ export interface Tracker extends Timestamps {
   description?: string;
   type: TrackerType;
   tracker_items: TrackerSimpleItem[] | TrackerComplexItem[];
+  chart_data: ChartData[];
 }
 
 export interface AppError {

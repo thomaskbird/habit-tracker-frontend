@@ -13,17 +13,17 @@ const TrackerListItemView = ({
   tracker
 }: TrackerListItemViewProps) => {
   return (
+  <Link to={`/tracker/${tracker.id}`}>
     <div className={'Row Tracker'}>
       <div className={'Column Column-1'}>
-        <Link to={`/tracker/${tracker.id}`}>
-          <h3>{tracker.name}</h3>
-        </Link>
+        <h3>{tracker.name}</h3>
         <p className={'note'}>{tracker.description}</p>
       </div>
       <div className={'Column Tracker__icon'}>
         <FontAwesomeIcon icon={'chevron-right'} />
       </div>
     </div>
+  </Link>
   );
 };
 

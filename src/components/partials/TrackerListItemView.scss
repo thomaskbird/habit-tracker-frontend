@@ -1,35 +1,32 @@
-.Tracker {
-  padding: 1rem 0;
-  cursor: pointer;
-  border-bottom: 1px solid #eee;
-
-  h3 {
-    margin: 0;
-  }
-
-  a {
-    color: #999;
-    text-decoration: none;
-    transition: all .3s ease-in;
-
-    &:hover {
-      color: #222;
-    }
-  }
-
-  p {
-    margin: 0;
-  }
-
-  &__icon {
-    color: #ccc;
-    align-self: center;
-    transition: all .3s ease-in;
-  }
+a {
+  color: #999;
+  text-decoration: none;
+  transition: all .3s ease-in;
 
   &:hover {
-    .Tracker__icon {
-      color: #666;
+    color: #222;
+  }
+
+  .Tracker {
+    padding: 1rem 0;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+
+    h3,
+    p {
+      margin: 0;
+    }
+
+    &__icon {
+      color: #ccc;
+      align-self: center;
+      transition: all .3s ease-in;
+    }
+
+    &:hover {
+      .Tracker__icon {
+        color: #666;
+      }
     }
   }
 }

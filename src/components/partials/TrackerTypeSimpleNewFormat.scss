@@ -1,0 +1,17 @@
+.SliderItem {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    height: 10%;
+  }
+
+  &__chart {
+    height: 300px;
+    position: relative;
+  }
+
+  &__items {
+    height: 30%;
+  }
+}
