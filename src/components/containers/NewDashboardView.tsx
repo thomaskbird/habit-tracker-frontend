@@ -7,33 +7,34 @@ import { TrackerTypeSimpleNewFormat } from '../partials/TrackerTypeSimpleNewForm
 
 const NewDashboardView = () => {
     const [trackers, setTrackers] = useState<Tracker[]>([]);
+    const [rangeSelected, setRangeSelected] = useState<number>(7);
 
-    const getTrackers = () => {
-        api.get(`/trackers/new-format`).then(response => {
+    const getTrackers = (range: number) => {
+        api.get(`/trackers/${range}`).then(response => {
             setTrackers(old => old !== response.data.payload.trackers ? response.data.payload.trackers : old);
         }).catch(e => console.log('Error: ', e));
     };
 
     const addTrackerItem = (id: number) => {
         api.post(`/tracker-item/create/${id}`).then(response => {
-            getTrackers();
+            getTrackers(rangeSelected);
         }).catch(e => console.log('Error: ', e));
     };
 
     const deleteTracker = (id: number) => {
         api.get(`/trackers/remove/${id}`).then(response => {
-            getTrackers();
+            getTrackers(rangeSelected);
         }).catch(e => console.log('Error: ', e));
     };
 
     const deleteTrackerItem = (trackerItemId: number) => {
         api.get(`/tracker-item/remove/${trackerItemId}`).then(response => {
-            getTrackers();
+            getTrackers(rangeSelected);
         }).catch(e => console.log('Error: ', e));
     };
 
     useEffect(() => {
-        getTrackers();
+        getTrackers(rangeSelected);
     }, []);
 
     return (
@@ -49,6 +50,10 @@ const NewDashboardView = () => {
                           tracker={tracker}
                           chartData={tracker.chart_data.reverse()}
                           trackerItems={tracker.tracker_items}
+                          onRangeChange={id => {
+                              setRangeSelected(id);
+                              getTrackers(id);
+                          }}
                           onAddTrackerItem={() => addTrackerItem(tracker.id)}
                           onDeleteTracker={() => deleteTracker(tracker.id)}
                           onDeleteTrackerItem={id => deleteTrackerItem(id)}

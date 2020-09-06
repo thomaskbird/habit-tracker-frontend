@@ -3,8 +3,20 @@
   display: flex;
   flex-direction: column;
 
+  &__title,
+  &__chart,
+  &__items,
+  &__cta {
+    padding: 10px 20px;
+  }
+
   &__title {
     flex: 1 0 0;
+
+    h3 {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__chart {
@@ -15,6 +27,14 @@
     flex: 5 0 0;
     overflow-y: auto;
     overflow-x: hidden;
+
+    .TrackerView {
+      &__item {
+        display: flex;
+        margin: 5px 0;
+        justify-content: space-between;
+      }
+    }
   }
 
   &__cta {

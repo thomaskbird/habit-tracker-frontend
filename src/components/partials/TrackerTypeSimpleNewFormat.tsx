@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import {
     ResponsiveContainer,
@@ -15,11 +15,33 @@ import { Tracker, TrackerSimpleItem } from 'src/types/global';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { triggerPrompt } from '../../utils/utils';
+import { Link } from 'react-router-dom';
+import { Subheader } from './Subheader';
+
+const rangeList = [
+    {
+        val: 7,
+        text: 'Week',
+    },
+    {
+        val: 30,
+        text: 'Month',
+    },
+    {
+        val: 180,
+        text: 'Half Year',
+    },
+    {
+        val: 365,
+        text: 'Year',
+    },
+];
 
 interface TrackerTypeSimpleNewFormatProps {
     tracker: Tracker;
     chartData: any[];
     trackerItems: TrackerSimpleItem[];
+    onRangeChange(idx: number): void;
     onAddTrackerItem(): void;
     onDeleteTracker(): void;
     onDeleteTrackerItem(id: number): void;
@@ -46,6 +68,7 @@ const TrackerTypeSimpleNewFormat = ({
     tracker,
     chartData,
     trackerItems,
+    onRangeChange,
     onAddTrackerItem,
     onDeleteTracker,
     onDeleteTrackerItem,
@@ -55,6 +78,20 @@ const TrackerTypeSimpleNewFormat = ({
             <div className={'SliderItem__title'}>
                 <h3>
                     {tracker.name}
+
+                    <select
+                        name={'range'}
+                        onChange={(e) => onRangeChange(e.target.value as any as number)}
+                    >
+                        {rangeList.map(rangeItem => (
+                            <option
+                                key={rangeItem.val}
+                                value={rangeItem.val}
+                            >
+                                {rangeItem.text}
+                            </option>
+                        ))}
+                    </select>
                     <button
                         type={'button'}
                         className={'Btn Btn__Danger Btn__small'}
