@@ -232,6 +232,11 @@ div {
   &:active {
     color: #fff;
   }
+
+  &[disabled] {
+    opacity: .5;
+    pointer-events: none;
+  }
 }
 
 // Forms
@@ -259,6 +264,7 @@ div {
     border-width: 1px;
     border-style: solid;
     padding: 0.6rem 1rem;
+    transition: all .3s ease-in;
 
     &:hover {
       border-color: #ccc;
@@ -270,11 +276,6 @@ div {
       border-color: #666;
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     }
-  }
-
-  input,
-  textarea {
-
   }
 
   textarea {

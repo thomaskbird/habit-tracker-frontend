@@ -15,8 +15,6 @@ import { Tracker, TrackerSimpleItem } from 'src/types/global';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { triggerPrompt } from '../../utils/utils';
-import { Link } from 'react-router-dom';
-import { Subheader } from './Subheader';
 
 const rangeList = [
     {
@@ -42,13 +40,12 @@ interface TrackerTypeSimpleNewFormatProps {
     chartData: any[];
     trackerItems: TrackerSimpleItem[];
     onRangeChange(idx: number): void;
-    onAddTrackerItem(): void;
+    onAddTrackerItem(): Promise<boolean>;
     onDeleteTracker(): void;
     onDeleteTrackerItem(id: number): void;
 }
 
 const CustomTooltip = ({ active, payload }: any) => {
-    // console.log('active, payload, label', active, payload, label);
     if(active && payload != null) {
         return (
             <div className={'custom-tooltip'}>
@@ -73,6 +70,8 @@ const TrackerTypeSimpleNewFormat = ({
     onDeleteTracker,
     onDeleteTrackerItem,
 }: TrackerTypeSimpleNewFormatProps) => {
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
     return (
         <div className={'SliderItem'}>
             <div className={'SliderItem__title'}>
@@ -154,8 +153,15 @@ const TrackerTypeSimpleNewFormat = ({
             <div className={'SliderItem__cta'}>
                 <button
                     type={'button'}
+                    disabled={isDisabled}
                     className={'Btn Btn__Primary Column'}
-                    onClick={() => onAddTrackerItem()}
+                    onClick={() => {
+                        setIsDisabled(true);
+                        const response = onAddTrackerItem();
+                        response.then(() => {
+                            setIsDisabled(false);
+                        });
+                    }}
                 >
                     Add
                 </button>

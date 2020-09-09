@@ -16,9 +16,13 @@ const NewDashboardView = () => {
     };
 
     const addTrackerItem = (id: number) => {
-        api.post(`/tracker-item/create/${id}`).then(response => {
+        return api.post(`/tracker-item/create/${id}`).then(response => {
             getTrackers(rangeSelected);
-        }).catch(e => console.log('Error: ', e));
+            return Promise.resolve(true);
+        }).catch(e => {
+            console.log('Error: ', e);
+            return Promise.resolve(false);
+        });
     };
 
     const deleteTracker = (id: number) => {
@@ -54,7 +58,7 @@ const NewDashboardView = () => {
                               setRangeSelected(id);
                               getTrackers(id);
                           }}
-                          onAddTrackerItem={() => addTrackerItem(tracker.id)}
+                          onAddTrackerItem={async () => addTrackerItem(tracker.id)}
                           onDeleteTracker={() => deleteTracker(tracker.id)}
                           onDeleteTrackerItem={id => deleteTrackerItem(id)}
                         />
