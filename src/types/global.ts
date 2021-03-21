@@ -13,6 +13,7 @@ export interface TrackerSimpleItem extends Timestamps {
   id: number;
   tracker_id: number;
   amount: number;
+  note: string;
 }
 
 export interface TrackerComplexItem extends TrackerSimpleItem, Timestamps {

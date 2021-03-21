@@ -41,6 +41,8 @@ interface TrackerTypeSimpleNewFormatProps {
     trackerItems: TrackerSimpleItem[];
     onRangeChange(idx: number): void;
     onAddTrackerItem(): Promise<boolean>;
+    textareaValue: string;
+    onTextareaValueChange(str: string): void;
     onDeleteTracker(): void;
     onDeleteTrackerItem(id: number): void;
 }
@@ -67,6 +69,8 @@ const TrackerTypeSimpleNewFormat = ({
     trackerItems,
     onRangeChange,
     onAddTrackerItem,
+    textareaValue,
+    onTextareaValueChange,
     onDeleteTracker,
     onDeleteTrackerItem,
 }: TrackerTypeSimpleNewFormatProps) => {
@@ -132,7 +136,8 @@ const TrackerTypeSimpleNewFormat = ({
             <div className={'SliderItem__items'}>
                 {trackerItems.map(item => (
                     <div className={'TrackerView__item'} key={item.id}>
-                        {moment(item.created_at).format('YYYY-MM-DD HH:mm:ss')}
+                        {moment(item.created_at).format('MM/DD HH:mm')}
+                        <span className={'TrackerView__item--note'}>{item.note}</span>
                         &nbsp;
                         <button
                             className={'Btn Btn__small Btn__Danger Btn__icon Btn__icon--left'}
@@ -151,20 +156,26 @@ const TrackerTypeSimpleNewFormat = ({
             </div>
 
             <div className={'SliderItem__cta'}>
-                <button
-                    type={'button'}
-                    disabled={isDisabled}
-                    className={'Btn Btn__Primary Column'}
-                    onClick={() => {
-                        setIsDisabled(true);
-                        const response = onAddTrackerItem();
-                        response.then(() => {
-                            setIsDisabled(false);
-                        });
-                    }}
-                >
-                    Add
-                </button>
+                <div className={'SliderItem__cta--hidden'}>
+                    <textarea
+                        value={textareaValue}
+                        onChange={(e) => onTextareaValueChange(e.target.value)}
+                    />
+                    <button
+                        type={'button'}
+                        disabled={isDisabled}
+                        className={'Btn Btn__Primary Column'}
+                        onClick={() => {
+                            setIsDisabled(true);
+                            const response = onAddTrackerItem();
+                            response.then(() => {
+                                setIsDisabled(false);
+                            });
+                        }}
+                    >
+                        Add
+                    </button>
+                </div>
             </div>
         </div>
     )

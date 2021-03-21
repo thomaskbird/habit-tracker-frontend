@@ -40,9 +40,32 @@
   &__cta {
     flex: 1 0 0;
     padding-top: 10px;
+    box-shadow: 1px -1px 8px rgba(0, 0, 0, .15);
 
-    .Btn {
-      width: 100%;
+    &--hidden {
+      textarea,
+      .Btn {
+        width: 100%;
+      }
+
+      textarea {
+        padding: 15px;
+        height: 100px;
+        margin-top: 7px;
+        margin-bottom: 10px;
+        border: 1px solid #eee;
+        box-sizing: border-box;
+        transition: all .5s ease-in;
+
+        &:hover {
+          border: 1px solid #aaa;
+        }
+
+        &:focus {
+          outline: none;
+          border: 1px solid #333;
+        }
+      }
     }
   }
 }
