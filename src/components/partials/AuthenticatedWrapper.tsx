@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router';
 import { NewDashboardView } from '../containers/NewDashboardView';
 import { TrackerCreateView } from '../containers/TrackerCreateView';
 import { TrackerComplexCreateView } from '../containers/TrackerComplexCreateView';
+import { TrackerItemView } from '../views/TrackerItemView';
 
 interface AuthenticatedWrapperProps {
   children: any;
@@ -20,6 +21,10 @@ const AuthenticatedWrapper = ({ children }: AuthenticatedWrapperProps) => {
         <Route
           path={'/dashboard'}
           component={NewDashboardView}
+        />
+        <Route
+          path={'/tracker-item/:id'}
+          component={TrackerItemView}
         />
         <Route
           path={'/tracker/create'}

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { LoginView } from 'src/components/views/LoginView';
 import { AuthenticatedWrapper } from 'src/components/partials/AuthenticatedWrapper';
 
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faPlus,
   faChevronUp,
@@ -106,6 +106,7 @@ import {
   faDungeon,
   faEdit,
   faEnvelope,
+  faEye,
   faFeather,
   faFile,
   faFileInvoiceDollar,
@@ -232,7 +233,7 @@ import {
   faWineBottle,
   faWineGlassAlt,
   faWrench,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faPlus,
@@ -336,6 +337,7 @@ library.add(
   faEdit,
   faEnvelope,
   faFeather,
+  faEye,
   faFile,
   faFileInvoiceDollar,
   faFilm,

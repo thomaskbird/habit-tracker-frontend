@@ -15,6 +15,7 @@ import { Tracker, TrackerSimpleItem } from 'src/types/global';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { triggerPrompt } from '../../utils/utils';
+import { Link } from 'react-router-dom';
 
 const rangeList = [
     {
@@ -75,6 +76,7 @@ const TrackerTypeSimpleNewFormat = ({
     onDeleteTrackerItem,
 }: TrackerTypeSimpleNewFormatProps) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const [isAddVisible, setIsAddVisible] = useState<boolean>(false);
 
     return (
         <div className={'SliderItem'}>
@@ -136,26 +138,38 @@ const TrackerTypeSimpleNewFormat = ({
             <div className={'SliderItem__items'}>
                 {trackerItems.map(item => (
                     <div className={'TrackerView__item'} key={item.id}>
-                        {moment(item.created_at).format('MM/DD HH:mm')}
-                        <span className={'TrackerView__item--note'}>{item.note}</span>
-                        &nbsp;
-                        <button
-                            className={'Btn Btn__small Btn__Danger Btn__icon Btn__icon--left'}
-                            onClick={() => {
-                                const confirm = triggerPrompt('Are you sure you want to delete?');
-                                if(confirm) {
-                                    onDeleteTrackerItem(item.id)
-                                }
-                            }}
-                        >
-                            <FontAwesomeIcon icon={'times'} />
-                            &nbsp;Delete
-                        </button>
+                        <div>
+                            {moment(item.created_at).format('MM/DD h:mma')}&nbsp;
+                            <span className={'TrackerView__item--note'}>- {item.note}</span>
+                        </div>
+                        <div>
+                            <Link to={`/tracker-item/${item.id}`}>
+                                <FontAwesomeIcon icon={'eye'} />
+                            </Link>
+
+                            <button
+                                className={'Btn Btn__small Btn__Danger Btn__icon Btn__icon--left'}
+                                onClick={() => {
+                                    const confirm = triggerPrompt('Are you sure you want to delete?');
+                                    if(confirm) {
+                                        onDeleteTrackerItem(item.id)
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={'times'} />
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
 
-            <div className={'SliderItem__cta'}>
+            <div className={`${isAddVisible ? 'SliderItem__cta open' : 'SliderItem__cta'}`}>
+                <span
+                    className={'SliderItem__cta--toggle'}
+                    onClick={() => setIsAddVisible(!isAddVisible)}
+                >
+                    <FontAwesomeIcon icon={'plus'} />
+                </span>
                 <div className={'SliderItem__cta--hidden'}>
                     <textarea
                         value={textareaValue}
