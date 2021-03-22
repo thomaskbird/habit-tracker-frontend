@@ -47,16 +47,25 @@
 
     &.open {
       transform: translate(0, 0);
+
+      .SliderItem__cta--toggle {
+        transform: rotate(405deg);
+      }
     }
 
     &--toggle {
       top: -75px;
       right: 20px;
       cursor: pointer;
-      padding: 15px 19px;
+      padding: 15px 17px;
       position: absolute;
       background: #4d97ec;
       border-radius: 100px;
+      transition: all .5s ease-in;
+
+      &.open {
+        transform: rotate(405deg);
+      }
 
       svg {
         color: #fff;
