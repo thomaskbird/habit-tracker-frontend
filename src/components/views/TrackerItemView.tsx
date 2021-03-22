@@ -16,7 +16,7 @@ const TrackerItemView = ({ match }: Props) => {
   const [createdAt, setCreatedAt] = React.useState<string>('');
 
   React.useEffect(() => {
-      api.get(`/tracker-item/${match.params.id}`).then(response => {
+      api.get(`/tracker-item/${(match.params as any).id}`).then(response => {
           setTrackerItem(response.data.payload.tracker_item);
           setCreatedAt(response.data.payload.tracker_item.created_at);
           setNote(response.data.payload.tracker_item.note !== null ? response.data.payload.tracker_item.note : '');
